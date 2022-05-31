@@ -13,7 +13,7 @@ import java.util.Objects;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-@Table(name="museums_table")
+@Table(name="museums")
 public class Museum {
 
     @Id
@@ -26,66 +26,12 @@ public class Museum {
     private String description;
     private String type;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Id
-    public Long getId() {
-        return id;
-    }
-
-    public float getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(float latitude) {
+    public Museum(float latitude, float longitude, String name, String description, String type) {
         this.latitude = latitude;
-    }
-
-    public float getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(float longitude) {
         this.longitude = longitude;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
         this.type = type;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Museum museum = (Museum) o;
-        return Float.compare(museum.latitude, latitude) == 0 && Float.compare(museum.longitude, longitude) == 0 && id.equals(museum.id) && name.equals(museum.name) && description.equals(museum.description) && type.equals(museum.type);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, latitude, longitude, name, description, type);
     }
 
     @Override

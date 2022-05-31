@@ -1,5 +1,6 @@
 package com.artexplorer.proiectpad.service;
 
+import com.artexplorer.proiectpad.exception.MuseumNotFoundException;
 import com.artexplorer.proiectpad.model.Museum;
 import com.artexplorer.proiectpad.repository.MuseumRepository;
 import lombok.AllArgsConstructor;
@@ -17,5 +18,14 @@ public class MuseumService {
 
     public List<Museum> getMuseums(){
         return museumRepository.findAll();
+    }
+
+    public List<Museum> findAllMuseums() {
+        return museumRepository.findAll();
+    }
+
+    public Museum findMuseum(Long museumId) {
+        return museumRepository.findById(museumId)
+                .orElseThrow(() -> new MuseumNotFoundException(String.format("Museum with the id %d not found!", museumId)));
     }
 }

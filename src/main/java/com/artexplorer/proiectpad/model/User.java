@@ -14,16 +14,18 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Getter
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
+@Table(name="users")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long id;
 
     @NotBlank(message = "Username is required")
     private String username;
@@ -37,6 +39,10 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private enUserRole userRole;
+
+    @OneToOne
+    private UserInfo userInfo;
+
 
     public User(@NotBlank(message = "Username is required") String username,
                 @NotBlank(message = "Password is required") String password,
