@@ -20,13 +20,13 @@ public class Museum {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private float latitude;
-    private float longitude;
+    private double latitude;
+    private double longitude;
     private String name;
     private String description;
     private String type;
 
-    public Museum(float latitude, float longitude, String name, String description, String type) {
+    public Museum(double latitude, double longitude, String name, String description, String type) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.name = name;
