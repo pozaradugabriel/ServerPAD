@@ -18,7 +18,7 @@ public class Rating {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
+    @NotNull
     private Integer grade;
 
     @NotNull
@@ -32,7 +32,7 @@ public class Rating {
     )
     private UserInfo user;
 
-    public Rating(@NotEmpty Integer grade, @NotNull Long museumId, @NotNull UserInfo user) {
+    public Rating(@NotNull Integer grade, @NotNull Long museumId, @NotNull UserInfo user) {
         this.grade = grade;
         this.museumId = museumId;
         this.user = user;
