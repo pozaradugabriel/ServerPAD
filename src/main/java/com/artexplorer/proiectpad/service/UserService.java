@@ -111,4 +111,60 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("User with the username %s not found!", username)));
     }
+
+    public List<Museum> findWishlistByUsername(String username)
+    {
+        return userRepository.findByUsername(username).get().getWishlist();
+    }
+
+    public List<Museum> findVisitedByUsername(String username)
+    {
+        return userRepository.findByUsername(username).get().getVisited();
+    }
+
+    public void addMuseumToWishlist(String username, Long museumId)
+    {
+        User user = userRepository.findByUsername(username).get();
+        Museum museum = museumService.findMuseum(museumId);
+
+        if(!user.getWishlist().contains(museum))
+        {
+            user.getWishlist().add(museum);
+            userRepository.save(user);
+        }
+    }
+    public void removeMuseumFromWishlist(String username, Long museumId)
+    {
+        User user = userRepository.findByUsername(username).get();
+        Museum museum = museumService.findMuseum(museumId);
+
+        if(user.getWishlist().contains(museum))
+        {
+            user.getWishlist().remove(museum);
+            userRepository.save(user);
+        }
+    }
+
+    public void addMuseumToVisited(String username, Long museumId)
+    {
+        User user = userRepository.findByUsername(username).get();
+        Museum museum = museumService.findMuseum(museumId);
+
+        if(!user.getVisited().contains(museum))
+        {
+            user.getVisited().add(museum);
+            userRepository.save(user);
+        }
+    }
+    public void removeMuseumFromVisited(String username, Long museumId)
+    {
+        User user = userRepository.findByUsername(username).get();
+        Museum museum = museumService.findMuseum(museumId);
+
+        if(user.getVisited().contains(museum))
+        {
+            user.getVisited().remove(museum);
+            userRepository.save(user);
+        }
+    }
 }

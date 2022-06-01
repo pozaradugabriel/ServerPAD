@@ -37,6 +37,22 @@ public class User implements UserDetails {
     @Email
     private String email;
 
+    @ManyToMany
+    @JoinTable(
+            name = "wishlist",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "museumId")
+    )
+    private List<Museum> wishlist;
+
+    @ManyToMany
+    @JoinTable(
+            name = "visited",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "museumId")
+    )
+    private List<Museum> visited;
+
     @Enumerated(EnumType.STRING)
     private enUserRole userRole;
 

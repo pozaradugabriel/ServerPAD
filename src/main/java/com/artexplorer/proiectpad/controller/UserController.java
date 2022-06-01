@@ -3,6 +3,7 @@ package com.artexplorer.proiectpad.controller;
 import com.artexplorer.proiectpad.service.MuseumService;
 import com.artexplorer.proiectpad.service.UserService;
 import com.artexplorer.proiectpad.model.Rating;
+import com.artexplorer.proiectpad.model.Museum;
 import com.artexplorer.proiectpad.model.RatingRequest;
 import com.artexplorer.proiectpad.service.RatingService;
 import lombok.AllArgsConstructor;
@@ -49,6 +50,67 @@ public class UserController {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
         ratingService.deleteRating(username, museumId);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/wishlist/get")
+    public ResponseEntity<List<Museum>> getUserWishlist()
+    {
+        // Get the logged in user
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        List<Museum> wishlist = userService.findWishlistByUsername(username);
+
+        return new ResponseEntity<>(wishlist, HttpStatus.OK);
+    }
+
+    @GetMapping(path = "/visited/get")
+    public ResponseEntity<List<Museum>> getUserVisited()
+    {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        List<Museum> visitedlist = userService.findVisitedByUsername(username);
+
+        return new ResponseEntity<>(visitedlist, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/wishlist/add/{museumId}")
+    public ResponseEntity<?> addToWishlist(@PathVariable("museumId") Long museumId)
+    {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        userService.addMuseumToWishlist(username, museumId);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/visited/add/{museumId}")
+    public ResponseEntity<?> addToVisited(@PathVariable("museumId") Long museumId)
+    {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        userService.addMuseumToVisited(username, museumId);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping(path = "/wishlist/del/{museumId}")
+    public ResponseEntity<?> delFromWishlist(@PathVariable("museumId") Long museumId)
+    {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        userService.removeMuseumFromWishlist(username, museumId);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping(path = "/visited/del/{museumId}")
+    public ResponseEntity<?> delFromVisited(@PathVariable("museumId") Long museumId)
+    {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        userService.removeMuseumFromVisited(username, museumId);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
