@@ -17,7 +17,8 @@ If a client logs in or registers into the application, they can rate the museum 
 Logged in clients have a diary that will keep track of the museums they visited and their impression. The diary will remember the date of the visit, the rating and the review if the client left one.
 
 
-![usecasefinal](https://user-images.githubusercontent.com/80643463/162056012-9c1ffdd1-97f4-4267-8279-f6fc9b6f7b38.jpg)
+![diagram1](https://user-images.githubusercontent.com/80643463/171592540-06d078b6-b076-4298-8c7f-7e18e1ed380b.jpg)
+
 
 ## Used technologies:
 
