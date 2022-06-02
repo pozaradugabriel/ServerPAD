@@ -19,8 +19,8 @@ Logged in clients have a diary that will keep track of the museums they visited 
 
 ![usecasefinal](https://user-images.githubusercontent.com/80643463/162056012-9c1ffdd1-97f4-4267-8279-f6fc9b6f7b38.jpg)
 
-###Used technologies:
+## Used technologies:
 
-Server-side: Java,SPRING Boot
-Client-side: React Native
+Server-side: Java,SPRING Boot  
+Client-side: React Native  
 Database: PostgreSQL
